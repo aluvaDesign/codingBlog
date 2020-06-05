@@ -1,0 +1,48 @@
+type Blog {
+  id: ID
+  author: String
+  category: Categories
+  tags: [Tag]
+  coverImage: String
+  title: String
+  descriptionBlog: String
+  descriptionPost: String
+  createAt: String
+}
+
+enum Categories {
+  DESIGN_GRAPHIC
+  PROTOTYPE_AND_DESIGN_INTERFAZ
+  DESVELOPER_AND_DESIGN_WEB
+}
+
+type Tag {
+  tag: String
+}
+
+type Query {
+  getBlogs(limit: Int, offset: Int): [Blog]
+  getBlog(title: String): Blog
+}
+
+input BlogInput {
+  id: ID
+  author: String!
+  category: Categories!
+  tags: [TagInput]
+  coverImage: String!
+  title: String!
+  descriptionBlog: String!
+  descriptionPost: String!
+  createAt: String
+}
+
+input TagInput {
+  tag: String
+}
+
+type Mutation {
+  createBlog(input: BlogInput): Blog
+  updateBlog(input: BlogInput): Blog
+  removeBlog(id: ID!): String
+}
